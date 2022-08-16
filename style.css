@@ -6,6 +6,20 @@
 
 :root {
   font-size: 62.5%;
+
+  --bg-color: #ffffff;
+  --white-color: #ffffff;
+  --font-color: #323238;
+  --selected: #02799D;
+  --unselected: #E1E1E6;
+}
+
+.dark-theme {
+  --bg-color: #121214;
+  --white-color: #ffffff;
+  --font-color: #C4C4CC;
+  --selected: #0A3442;
+  --unselected: #29292E;
 }
 
 .hide {
@@ -17,6 +31,7 @@ body {
   min-height: 100vh;
 
   position: relative;
+  background: var(--bg-color);
 }
 
 #container {
@@ -37,7 +52,7 @@ span {
 
   font-family: 'Roboto', sans-serif;
 
-  color: #323238;
+  color: var(--font-color);
 }
 
 .controls {
@@ -53,10 +68,12 @@ span {
   gap: 3.2rem;
   width: 30.8rem;
   height: 33.6rem;
+
+  animation: cards 1s forwards ease-out;
 }
 
 .card {
-  background: #E1E1E6;
+  background: var(--unselected);
   border-radius: 2.4rem;
 
   width: 13.8rem;
@@ -65,6 +82,12 @@ span {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
+}
+
+.card:focus-within {
+  background: var(--selected);
 }
 
 button {
@@ -73,16 +96,19 @@ button {
   cursor: pointer;
 }
 
+path {
+  fill: var(--font-color);
+}
+
 button svg{
   width: 4.8rem;
   height: 4.8rem;
 }
 
-.light, 
-.moon {
+.moon, .sun{
   position: absolute;
-  top: 6.4rem;
   right: 6.4rem;
+  top: 6.4rem;
 }
 
 input {
@@ -93,29 +119,36 @@ input {
 }
 
 input[type='range'] {
-  background: #323238;
   -webkit-appearance: none;
+
   width: 9rem;
   height: .4rem;
   border-radius: .5rem;
-  background-repeat: no-repeat;
+
+  background: var(--font-color);
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  background: #323238;
   -webkit-appearance: none;
+
+  background: var(--font-color);
   height: 1.6rem;
   width: 1.6rem;
+
   border-radius: 50%;
   cursor: pointer;
 }
 
+@keyframes cards {
+  0% {
+    transform: translateX(-100px);
+  }
 
-/* ======================= DarkMode=============== */
+  100% {
+    transform: translateX(0);
+  }
+}
 
-
-
-/* ======================= DarkMode=============== */
 @media (max-width: 1130px) {
   #container {
     flex-direction: column;
@@ -132,11 +165,7 @@ input[type="range"]::-webkit-slider-thumb {
   }
 }
 @media(max-width: 580px) {
-  #container {
-    margin-top: 10rem;
-  }
-  .light, 
-  .moon {
+  .moon, .sun {
     position: absolute;
     top: 4rem;
     left: 7rem;

@@ -66,7 +66,7 @@ function addMinutes() {
   }
 
   if(minutes >= 59) {
-    alert('Limite maximo de tempo')
+    alert('Você atingiu o limite maximo de tempo')
     return
   }
 
@@ -120,6 +120,7 @@ function allSoundsPause() {
   soundFire.pause()
 }
 
+
 buttonFlorest.addEventListener('click', function() {
   soundFlorest.play()
   soundRain.pause()
@@ -147,8 +148,6 @@ buttonFire.addEventListener('click', function() {
   soundCoffee.pause()
   soundFire.play()
 })
-//End clicks sounds button
-
 
 //Volume
 
@@ -166,33 +165,35 @@ volumeRain.addEventListener('change', function(volume){
 })
 
 volumeCoffee.addEventListener('change', function(volume){
-  soundRain.volume = volume.currentTarget.value / 100
+  soundCoffee.volume = volume.currentTarget.value / 100
 })
 
 volumeFire.addEventListener('change', function(volume){
-  soundRain.volume = volume.currentTarget.value / 100
+  soundFire.volume = volume.currentTarget.value / 100
 })
-
-//End volume
 
 //DarkMode
 
 const moon = document.querySelector('.moon')
-const light = document.querySelector('.light')
+const sun = document.querySelector('.sun')
 
-light.addEventListener('click', function() {
-  light.classList.add('hide')
-  moon.classList.remove('hide')
-})
-
-moon.addEventListener('click', function() {
-  light.classList.remove('hide')
+moon.addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme')
   moon.classList.add('hide')
+  sun.classList.remove('hide')
+  soundFlorest.pause()
+  soundRain.pause()
+  soundCoffee.pause()
+  soundFire.pause()
+  }
+)
+
+sun.addEventListener('click', () => {
+  document.body.classList.toggle('dark-theme')
+  sun.classList.add('hide')
+  moon.classList.remove('hide')
+  soundFlorest.pause()
+  soundRain.pause()
+  soundCoffee.pause()
+  soundFire.pause()
 })
-
-function changeTheme() {
-  
-}
-
-
-
